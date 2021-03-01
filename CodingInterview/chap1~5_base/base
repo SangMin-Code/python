@@ -1,0 +1,118 @@
+1. 파이선 문법
+Indent(인덴트)
+PEP8에 따라 탭이 아닌 공백 4칸을 사용
+PEP(Python Enhancement Proposals 파이선 개선 제안서)
+https://www.python.org/dev/peps/
+ex)
+# 첫번째 줄에 파라미터가 있다면 파라미터가 시작되는 부분에 맞춘다
+foo=long_function_name(var_one,var_two,
+                       var_three,var_four)
+# 첫번째 줄에 파라미터가 없다면 인덴트를 한번 더 추가해서 다른 행과 구분되게 한다.
+def long_function_name(
+        var_one, var_two, var_three,
+        var_four):
+    print(var_one)
+
+foo = long_function_name(
+    var_one, var_two,
+    var_three, var_four)
+* pycharm의 Reformat Code를 실행하면 (Ctrl+Art+L) 사용하면 PEP8기준에 맞추어줌
+
+Naming Convention(네이밍 컨벤션)
+파이선에서는 변수명을 지을때 스네이크 케이스를 따른다(Snake Case) -> Python의 PEP8 및 철학에 따른 네이밍
+Camel Case는 자바스타일
+
+Type Hint(타입 힌트)
+def fn(a:int) -> bool:
+a는 int,  return은 bool을 자료형으로 사용하는 함수의 힌트
+*강제규약은 아니므로 여전히 다른 자료형이 할당될수는 있다.
+*mypy 를 사용하면  힌트가 잘못 지정된 코드에 오류를 발생시켜 확인가능
+
+List Comprehension(리스트 컴프리헨션)
+리스트 컴프리헨션이란 기존 리스트를 기반으로 새로운 리스트를 만들어내는 구문으로
+파이선은 map, filter같은 함수형 기능과 Lambda Expression을 지원하므로 간결한 코드를 제공한다
+list(map(lambda x : x+10,[1,2,3]))
+[11,12,13]
+
+[n*2 for n in range(1,10+1) if n%2==1]
+[2,6,10,14,18]
+
+리스트 뿐 아니라 딕셔너리에도 가능
+a={}
+for key, value in original.items():
+    a[key]=value
+a={key:value for key,value in original.items()}
+
+Generator(제너레이터)
+루프의 반복 동작을 제어할 수 있는 루틴 형태
+예를 들어 임의의 조건으로 숫자 1억개를 만들어내 계산하는 프로그램을 작성한다고 가정
+제너레이터가 없다면 1억개의 숫자를 보관할 메모리가 필요하지만 제너레이터를 사용하면 필요할때마다 생성한다.
+yield 구문을 사용, 제너레이터를 리턴할 수 있다. 기존의 함수가 return 하면 함수의 동작을 종료하나 yield는 실행중이던
+중간값을 리턴하고 종료되지 않고 맨 끝에 도달할때까지 실행될 수 있다.
+
+def get_natural_number():
+    n=0
+    while True:
+        n+=1
+        yield n
+만약 값을 생성하려면 next()로 추출한다.
+g=get_natural_number()
+for _ in range(0,100):
+    print(next(g))
+여러 타입의 값을 하나의 함수에서 생성하는것도 가능하다
+def generator():
+    yield 1
+    yield 'string'
+    yield True
+
+range
+제너레이터의 방식을 활용하는 함수로 for 문에서 사용할 경우 내부적으로는 제너레이터의 next()를 호출하듯
+매번 다음 숫자를 생성해낸다. 파이선2.x 버전에서는 숫자를 미리 생성해서 리스트로 리턴하는 방식이었고
+제너레이터를 리턴하는 방식으로 xrange()가 따로 존재했다. 3.x 이후 range는 제너레이터 역할을 하는 range클래스를 리턴하는 형태로 변경되었다.
+
+enumerate
+열거하는 함수, 순서가 있는 자료형(list, set, tuple)을 인덱스를 포함한
+enumerate객체로 리턴한다.
+a=[1,2,3,2,45,2,5]
+enumerate(a)
+list(enumerate(a))
+[(0,1),(1,2),(2,3),(3,2),(4,45),(5,2),(6,5)]
+for i,v in enumerage(a):
+    print(i,v)
+
+나눗셈연산자 //, % , divmod(a,b)
+소수점 버림 //
+나머지 %
+목과 나머지를 한번에 구할때
+divmod(5,3)
+(1,2)
+
+print
+print('A1','B2')
+콤마로 구분시 한 칸 공백이 디폴트로 설정되어있다.
+
+print('A1','B2',sep=',')
+sep 파라미터로 구분자를 지정해줄 수 있다.
+
+print('aa',end=' ')
+print('bb')
+end=' '로 줄바꿈을 없앨 수 있다.
+
+a=['A','B']
+print(' '.join(a))
+리스트를 출력할 때는 join()으로 묶어서 출력한다.
+
+format 사용하기
+print('{0} : {1}' .format(idx+1, fruit))
+print('{} : {}' .format(idx+1, fruit))
+print(f'{idx+1}: {fruit})
+세번째 f-string은 3.6+ 에서만 지원한다.
+
+pass
+널 연산으로 아무것도 하지 않는 기능이다. 함수만 만들어놓고 구현하지 않았을 때
+인덴트 오류가 발생하므로 pass를 사용한다.
+def method_a():
+    pass
+
+locals
+locals()는 로컬 심볼 테이블 딕셔너리를 가져오는 메소드로 로컬에 선언된 모든 변수를 조회할 수 있다.
