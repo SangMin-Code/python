@@ -3,6 +3,8 @@ import sys
 sys.stdin = open('input/biggest_number')
 from typing import List
 
+#functools.cmp_to_key(comparator)
+
 #time out
 def my(numbers:List[int])->List[int]:
     for i in range(len(numbers)-1):
@@ -15,6 +17,11 @@ def my2(numbers:List[str])->str:
     print(numbers)
     numbers.sort(key= lambda x : x*3,reverse=True)
     return ''.join(numbers)
+
+def practice(numbers:List[str])->str:
+    numbers.sort(key=lambda x:x*3, reverse=True)
+    return ''.join(numbers)
+
 
 TC = int(input())
 for test_case in range(1,TC+1):
