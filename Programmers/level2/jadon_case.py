@@ -11,7 +11,6 @@ def my(letters : str)->str:
     for i in range(1,len(letters)-1):
         if letters[i]==' ' and (letters[i-1]!=' ' and letters[i-1]!='#'):
             letters = letters[:i]+'#'+letters[i+1:]
-
     words = list(letters.split('#'))
     for i,word in enumerate(words):
         str = word.lower()
@@ -24,6 +23,23 @@ def my(letters : str)->str:
             str= str[0].upper() + str[1:]
         words[i]=str
 
+    return ' '.join(words)
+
+def practice(letters:str)->str:
+    for i in range(1,len(letters)-1):
+        if letters[i]==' ' and (letters[i-1]!=' ' and letters[i-1]!='#'):
+            letters = letters[:i]+'#'+letters[i+1:]
+    words = list(letters.split('#'))
+    for i, word in enumerate(words):
+        str = word.lower()
+        if str[0] is ' ':
+            for j in range(len(word)):
+                if word[j]!=' ' and not word[j].isdigit():
+                    str = str[:j]+str[j].upper()+str[j+1:]
+                    break
+        elif not word[0].isdigit():
+            str = str[0].upper()+str[1:]
+        words[i]=str
     return ' '.join(words)
 
 TC = int(input())

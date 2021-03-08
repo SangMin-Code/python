@@ -4,7 +4,6 @@ from typing import List
 sys.stdin = open('input/make_target_number')
 
 def my(numbers:List[int], t:int)->int:
-    answer =0
     def dfs(sum,k):
         if k == len(numbers):
             if sum ==t:
@@ -14,6 +13,17 @@ def my(numbers:List[int], t:int)->int:
         else :
             return dfs(sum+numbers[k],k+1)+dfs(sum-numbers[k],k+1)
     return dfs(0,0)
+
+def practice(numbers:List[int], t:int)->int:
+    def DFS(sum,k):
+        if k == len(numbers):
+            if sum == k:
+                return 1
+            else :
+                return 0
+        else :
+            return DFS(sum+numbers[k],k+1)+DFS(sum-numbers[k],k+1)
+    return DFS(0,0)
 
     #iterator로 어덯게?
 

@@ -13,11 +13,20 @@ def my(nums:List[int])->int:
         if a%b==0:
             return b
         return GCD(b,a%b)
-
-
     for i in range(1,len(nums)):
         nums[i] = nums[i-1] * nums[i] //GCD(nums[i-1],nums[i])
     return nums[-1]
+
+def practice(nums:List[int])->int:
+    def GCD(a,b):
+        if a%b==0:
+            return b
+        return GCD(b,a%b)
+
+    for i in range(1,len(nums)):
+        nums[i] = nums[i-1]*nums[i] // GCD(nums[i-1],nums[i])
+    return nums[-1]
+
 
 
 TC = int(input())

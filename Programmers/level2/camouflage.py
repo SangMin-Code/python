@@ -14,6 +14,16 @@ def my(clothes:List[List[str]])->int:
         answer*=(count[i]+1)
     return answer-1
 
+def practice(clothes:List[List[str]])->int:
+    answer =1
+    count = collections.defaultdict(int)
+
+    for _,part in clothes:
+        count[part]+=1
+    for i in count:
+        answer+=(count[i]+1)
+    return answer -1
+
 TC = int(input())
 for test_case in range(1,TC+1):
     n = int(input())

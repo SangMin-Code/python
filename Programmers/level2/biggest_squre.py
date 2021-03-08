@@ -66,11 +66,24 @@ def my3(board:List[List[int]])->int:
     for i in range(1, row):
         for j in range(1, col):
             if board[i][j] != 0:
-                board[i][j] = min(board[i - 1][j - 1], min(board[i - 1][j], board[i][j - 1])) + 1
+                board[i][j] = min(board[i - 1][j - 1], board[i - 1][j], board[i][j - 1]) + 1
     answer = []
     for i in range(row):
         answer.append(max(board[i]))
     return max(answer) ** 2
+
+def practice(board:List[List[int]])->int:
+    row = len(board)
+    col = len(board[0])
+
+    for i in range(1,row):
+        for j in range(1,col):
+            if board[i][j]==1:
+                board[i][j]=min(board[i-1][j-1],board[i-1][j],board[i][j-1])+1
+    answer = []
+    for i in range(row):
+        answer.append(max(board[i]))
+    return max(answer)**2
 
 
 

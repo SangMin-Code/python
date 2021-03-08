@@ -16,6 +16,15 @@ def my(b:int, y:int)->List[int]:
             return(a,b)
     return -1
 
+def practice(b:int, y:int)->List[int]:
+    for i in range(1,yellow+1):
+        width = i
+        if yellow %i !=0:
+            continue
+        height = y//width
+        if brown == 2*(width+2)+2*height:
+            return height,width
+    return -1
 
 
 TC = int(input())

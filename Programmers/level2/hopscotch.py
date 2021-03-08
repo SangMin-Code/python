@@ -26,7 +26,14 @@ def my2(nums:List[List[int]])->int:
             nums[i][j]=max(list)+val
     return (max(nums[-1]))
 
-
+def practice(nums:List[List[int]])->int:
+    nums.insert(0,[0,0,0,0])
+    for i in range(1,len(nums)):
+        for j,val in enumerate(nums[i]):
+            list =nums[i-1][:]
+            list.pop(j)
+            nums[i][j]=max(list)+val
+    return max(nums[-1])
 
 TC = int(input())
 for test_case in range(1,TC+1):
