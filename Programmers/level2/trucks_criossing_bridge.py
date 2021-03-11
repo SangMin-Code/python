@@ -33,9 +33,6 @@ def practice(bridge_length:int, weight:int, truck_weights:List[int])->int:
                 bridge.append(0)
     return time
 
-
-
-
 TC = int(input())
 for test_case in range(1,TC+1):
     bridege_length = int(input())
