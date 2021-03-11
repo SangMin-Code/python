@@ -12,12 +12,13 @@ def my(w:int, h:int)->int:
     else:
         for i in range(1, w + 1):
             answer += math.ceil(h / w * i) - math.floor(h / w * (i - 1))
-            print(math.ceil(h / w * i) - math.floor(h / w * (i - 1)))
-
     return w*h-answer
 
 def solution(w:int,h:int)->int:
     return (w*h-(w+h-math.gcd(w,h)))
+
+def practice(w:int,h:int)->int:
+    return (w*h-math.gcd(w,h))
 
 TC = int(input())
 for test_case in range(1,TC+1):

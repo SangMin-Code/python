@@ -16,6 +16,17 @@ def my(n:int)->int:
         answer = str(rest)+answer
     return answer
 
+def practice(n:int)->str:
+    answer =''
+    while n>0:
+        rest = n%3
+        n/=3
+        if rest ==0:
+            rest = 4
+            n-=1
+        answer = str(rest)+answer
+    return answer
+
 TC = int(input())
 for test_case in range(1,TC+1):
     n = int(input())

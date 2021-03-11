@@ -18,6 +18,24 @@ def my(bridege_length:int, weight:int, truck_weights:List[int])->int:
                 bridge.append(0)
     return time
 
+def practice(bridge_length:int, weight:int, truck_weights:List[int])->int:
+    time =0
+    bridge = collections.deque([0]*bridge_length)
+    truck_weights = collections.deque(truck_weights)
+    sum = 0
+    while len(bridge)>0:
+        time+=1
+        bridge.popleft()
+        if truck_weights:
+            if sum+truck_weights[0]<=weight:
+                bridge.append(truck_weights.popleft())
+            else:
+                bridge.append(0)
+    return time
+
+
+
+
 TC = int(input())
 for test_case in range(1,TC+1):
     bridege_length = int(input())

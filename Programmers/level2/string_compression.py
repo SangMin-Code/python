@@ -31,6 +31,29 @@ def my(s:str)->int:
         min_length = min(min_length, len(comp_str))
     return min_length
 
+def practice(s:str)->int:
+    min_length = len(s)
+    for i in range(1,len(s)//2+1):
+        stack=[]
+        part = ''
+        cnt =1
+        left,right = 0,i
+        while left<len(s)+i:
+            if stack:
+                if stack[-1]==s[left:right]:
+                    cnt+=1
+                else :
+                    if cnt>1:
+                        part +=str(cnt)
+                    part+=stack.pop()
+                    cnt=1
+                    stack.append(s[left:right])
+            else :
+                stack.append(s[left:right])
+            left, right = left + i, right + i
+        min_length=min(min_length,len(part))
+    return min_length
+
 
 
 
@@ -40,5 +63,6 @@ def my(s:str)->int:
 TC = int(input())
 for test_case in range(1,TC+1):
     s = input()
-    answer = my(s)
+    #answer = my(s)
+    answer = practice(s)
     print(answer)
