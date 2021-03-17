@@ -71,6 +71,21 @@ def my2(course:List[int],orders:List[str])->List[str]:
     result.sort()
     return result
 
+def practice(course:List[int],orders:List[str])->List[str]:
+    result = []
+    for number in course:
+        candidate = []
+        for order in orders:
+            com = itertools.combinations(sorted(order),number)
+            for i in com:
+                candidate.append(''.join(i))
+        num = collections.Counter(candidate)
+        for i in num:
+            if num[i] == num.most_common()[0][1] and num[i]>1:
+                result.append(i)
+    result.sort()
+    return result
+
 TC = int(input())
 for test_case in range(1,TC+1):
     course = map(int,input().split())

@@ -24,8 +24,26 @@ def my(arr:List[List[int]])->List[int]:
     reculsion([0,0],n)
     return answer
 
-
-
+def practice(arr:List[List[int]])->List[int]:
+    n = len(arr)
+    answer = [0,0]
+    def recursion(xy:List[int],n:int):
+        if n > 0:
+            x,y,next = xy[0],xy[1],n//2
+            total = 0
+            for i in range(n):
+                total+=sum(arr[x+i][y:y+n])
+            if total==0:
+                answer[0]=answer[0]+1
+            elif total == n**2:
+                answer[1]=answer[1]+1
+            else :
+                recursion([x,y],next)
+                recursion([x+next,y],next)
+                recursion([x+next,y+next],next)
+                recursion([x,y+next],next)
+    recursion([0,0],n)
+    return answer
 TC = int(input())
 for test_case in range(1,TC+1):
     n=int(input())

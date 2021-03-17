@@ -4,7 +4,7 @@ import sys
 sys.stdin=open('input/tuple')
 from typing import List
 import collections
-
+import re
 def my(s:str)->List[int]:
     s= s.replace('{','')
     s= s.replace('}','')
@@ -14,6 +14,15 @@ def my(s:str)->List[int]:
     for i,v in cnt:
         answer.append(int(i))
     return answer
+
+def practice(s:str)->List[int]:
+    s= re.sub('[{}]','',s)
+    cnt = collections.Counter(s.split(',')).most_common()
+    answer = []
+    for i,v in cnt:
+        answer.append(int(i))
+    return answer
+
 
 
 
