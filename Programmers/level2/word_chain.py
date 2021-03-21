@@ -15,6 +15,18 @@ def my(n:int, words:List[str])->List[int]:
         prev_word=word[-1]
     return [0,0]
 
+def practice(n:int, words:List[str])->List[int]:
+    prev_word = words[0][-1]
+    used_word =[words[0]]
+    for idx, word in enumerate(words[1:]):
+        if word in used_word or word[0]!=prev_word:
+            return [(idx+1)%n+1, (idx+1)//n+1]
+        used_word.append(word)
+        prev_word=word[-1]
+    return [0,0]
+
+
+
 TC = int(input())
 for test_case in range(1,TC+1):
     n = int(input())

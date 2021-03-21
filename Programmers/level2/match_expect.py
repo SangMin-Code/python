@@ -7,13 +7,19 @@ from math import ceil
 
 def my(N:int, A:int,B:int)->int:
     round = 0
-
     while A!=B:
         round+=1
         A=(A+1)//2
         B=(B+1)//2
     return round
 
+def practce(N:int, A:int, B:int)->int:
+    round = 0
+    while A!=B:
+        round+=1
+        A=(A+1)//2
+        B=(B+1)//2
+    return round
 
 TC = int(input())
 for test_case in range(1,TC+1):
