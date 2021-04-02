@@ -18,10 +18,24 @@ def my(n,arr1:List[int],arr2:List[int])->List[str]:
         answer.append(temp)
     return answer
 
+def solution(n,arr1:List[int],arr2:List[int])->List[str]:
+    maps = []
+    for i in range(n):
+        #or 연산 후 이진수 변환
+        maps.append(
+            bin(arr1[i]|arr2[i])[2:]
+            .zfill(n)
+            .replace('1','#')
+            .replace('0',' ')
+        )
+    return maps
+
+
 TC = int(input())
 for test_case in range(1,TC+1):
     n = int(input())
     arr1 = list(map(int,input().split()))
     arr2 = list(map(int, input().split()))
-    answer =my(n,arr1,arr2)
+    #answer =my(n,arr1,arr2)
+    answer = solution(n, arr1, arr2)
     print(answer)
