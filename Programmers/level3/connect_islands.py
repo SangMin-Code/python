@@ -9,7 +9,6 @@ def my(n:int,costs:List[int])->int:
     costs.sort(key = lambda x: x[2])
     connection = [costs[0][0]]
     while len(connection) != n:
-        print(connection)
         for i, cost in enumerate(costs):
             if (cost[0] in connection) and (cost[1] in connection): continue
             if (cost[0] in connection) or (cost[1] in connection):
