@@ -15,7 +15,6 @@ def my(tickets:List[List[str]])->List[str]:
         while graph[stack[-1]]:
             stack.append(graph[stack[-1]].pop(0))
         route.append(stack.pop())
-        print(stack,'?')
     return route[::-1]
 
 
