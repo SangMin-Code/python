@@ -15,7 +15,20 @@ def my(n:int)->int:
         val = val1 + val2
         val2, val1 = val, val2
     answer = val
+    return answer % 1234567
 
+def practice(n:int)->int:
+    answer = 0
+    if n == 1:
+        return 1
+    if n == 2:
+        return 2
+    val1, val2 = 1, 2
+    val = 0
+    for i in range(n - 2):
+        val = val1 + val2
+        val2, val1 = val, val2
+    answer = val
     return answer % 1234567
 
 TC = int(input())
