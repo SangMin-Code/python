@@ -16,7 +16,6 @@ def my(n:int, s:int, a:int, b:int, fares:List[List[int]])->int:
         table = [float('inf')]*(n+1)
         table[start]=0
         queue = [[0,start]]
-
         while queue:
             val, node = heapq.heappop(queue)
             if table[node] < val: continue
@@ -36,5 +35,5 @@ TC = int(input())
 for test_case in range(1, TC + 1):
     n,s,a,b = map(int,input().split())
     fares = [list(map(int,i.split()))for i in list(input().split(','))]
-    answer = my2(n,s,a,b,fares)
+    answer = my(n,s,a,b,fares)
     print(answer)
