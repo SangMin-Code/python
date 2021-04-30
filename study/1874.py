@@ -4,7 +4,6 @@ from typing import List
 
 sys.stdin = open('input/1874')
 
-
 def my(n:int,nums:List[int]):
     p_num, n_idx = 1,0
     stack = []
