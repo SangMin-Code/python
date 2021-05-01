@@ -3,7 +3,7 @@ import sys
 from typing import List
 import collections
 sys.stdin = open('input/make_all_zeros')
-
+sys.setrecursionlimit(3000000)
 '''
 #시간초과 걸림
 def my(a:List[int], edges:[List[List[int]]])->int:
@@ -47,6 +47,31 @@ def my(a:List[int], edges:[List[List[int]]])->int:
         return cnt
     return dfs(0,0)
 
+#반복법 -> 런타임오류 (용량초과일듯?)
+def my2(a:List[int], edges:[List[List[int]]])->int:
+    if sum(a)!=0:
+        return -1
+    graph = collections.defaultdict(list)
+    for u, v in edges:
+        graph[u].append(v)
+        graph[v].append(u)
+    answer = 0
+    stack = [[0,0]]
+    while stack:
+        c,p = stack.pop()
+        if len(graph[c])==1:
+            a[p]+=a[c]
+            answer += abs(a[c])
+            a[c]=0
+            graph[p].remove(c)
+            if len(graph[p])==1:
+                stack.append([p,graph[p][0]])
+        else:
+            for next_node in graph[c]:
+                if next_node != p:
+                    stack.append([next_node,c])
+    return answer
+
 '''
 def my(a, edges):
     answer = []
@@ -70,4 +95,5 @@ TC = int(input())
 for test_case in range(1, TC+1):
     a = list(map(int,input().split()))
     edges = [list(map(int,i.split())) for i in list(input().split(','))]
-    print(my(a,edges))
+    #print(my(a,edges))
+    print(my2(a, edges))
