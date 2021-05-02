@@ -7,7 +7,6 @@ from typing import List
 
 sys.stdin = open('input/10773')
 
-
 stack = []
 def my(num:int):
     if num==0 and stack:

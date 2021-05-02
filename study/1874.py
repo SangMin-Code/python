@@ -8,6 +8,18 @@ def my(n:int,nums:List[int]):
     p_num, n_idx = 1,0
     stack = []
     answer = []
+    for i in nums:
+        while p_num<=i:
+            stack.append(p_num)
+            p_num += 1
+            answer.append('+')
+        if stack.pop()!=i:
+            return ['NO']
+        else :
+            answer.append('-')
+    return answer
+
+    '''        
     while True:
         if len(stack)==0:
             if n == n_idx:
@@ -24,7 +36,7 @@ def my(n:int,nums:List[int]):
             elif stack[-1]<nums[n_idx]:
                 if p_num > nums[n_idx]:
                     return ['NO']
-                while p_num <=n and stack[-1]<nums[n_idx]:
+                while stack[-1]<nums[n_idx]:
                     answer.append('+')
                     stack.append(p_num)
                     p_num+=1
@@ -34,7 +46,7 @@ def my(n:int,nums:List[int]):
                     stack.pop()
                 if len(stack)==0:
                     return ['NO']
-
+    '''
 TC = int(input())
 for test_case in range(1, TC + 1):
     n = int(sys.stdin.readline().rstrip())

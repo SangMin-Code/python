@@ -27,7 +27,6 @@ def my(s:str):
         else :
             print(stack[-1])
 
-
 n = int(sys.stdin.readline().rstrip())
 for _ in range(n):
     my(sys.stdin.readline().rstrip())
