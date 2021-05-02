@@ -28,8 +28,29 @@ def my(N:int, number:int)->int:
             return i+1
     return -1
 
+def my2(N:int, number:int)->int:
+    def dfs(val, cnt):
+        answer = float('inf')
+        if cnt <= 8:
+            if val == number:
+                return cnt
+            for i in range(1, 8 - cnt + 1):
+                cal_num = int(str(N) * (i))
+                answer = min(answer, dfs(val + cal_num, cnt + i))
+                answer = min(answer, dfs(val - cal_num, cnt + i))
+                answer = min(answer, dfs(val * cal_num, cnt + i))
+                answer = min(answer, dfs(val // cal_num, cnt + i))
+        return answer
+    answer = dfs(0, 0)
+
+    if answer != float('inf'):
+        return answer
+    else:
+        return -1
+
 TC = int(input())
 for test_case in range(1,TC+1):
     N,number = map(int,input().split())
-    answer = my(N,number)
+    #answer = my(N,number)
+    answer = my2(N,number)
     print(answer)
