@@ -20,31 +20,27 @@ def my(l:int,r:int,d:int,g:int,jombies:List[int])->str:
     return 'YES'
 '''
 def my(l:int,r:int,d:int,g:int,jombies:List[int])->str:
-    flag = True
-    start = -r+1
-    end = 0
+    # l: 좀비 list 길이, r: 사거리 d: 데미지 g: 수류탄 수, jombies: 좀비 체력 리스트
+    #[? ? ?] r 크기의 윈도우를 움직이면서 윈도우 내의 정보로 end위치의 좀비 대응을 결정,
+    # end 좀비 대응 후 start,end를 이동시켜 진행
+    start=-r+1
+    end =0
     bomb = r-1
-    shoot_dam = 0
-    full_dam =r*d
-    bomber = [False]*l
+    is_bomb = [False]*l
 
-    for idx,life in enumerate(jombies):
-        shoot_dam = full_dam - bomb*d
-        if(shoot_dam<life):
-            if g <=0:
-                flag=False
-                break
-            g -=1
+    for life in jombies:
+        damage = (r-bomb)*d
+        if damage<life:
+            if g<=0:
+                return 'NO'
+            g-=1
             bomb+=1
-            bomber[end]=True
-        if start<0 or bomber[start]:
+            is_bomb[end]=True
+        if start<0 or is_bomb[start]:
             bomb-=1
         start+=1
         end+=1
-        if end ==l:
-            break
-
-    return "YES" if flag else "NO"
+    return 'YES'
 
 TC = int(input())
 for test_case in range(1, TC + 1):
