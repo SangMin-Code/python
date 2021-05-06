@@ -8,19 +8,23 @@ sys.stdin = open('input/11577')
 #시간초과
 def my(N:int,S:int, bulbs:List[int]):
     dic = {1:0, 0:1}
-    light = sum(bulbs)
     cnt =0
+    convert = [0]*N
     for i in range(N-S+1):
-        if bulbs[i]==1:
+        if (bulbs[i]==1 and convert[i]%2==0) or (bulbs[i]==0 and convert[i]%2!=0):
             cnt+=1
+            bulbs[i]=0
             for j in range(S):
-                bulbs[i+j] = dic[bulbs[i+j]]
-                if bulbs[i+j]==1:
-                    light+=1
-                else :
-                    light-=1
-        if light==0:
-            return cnt
+                convert[i+j]+=1
+
+    for i in range(N):
+        if convert[i]%2!=0:
+            bulbs[i]=dic[bulbs[i]]
+
+    if sum(bulbs)==0:
+        return cnt
+
+
     return 'Insomnia'
 
 
