@@ -7,6 +7,7 @@ sys.stdin = open('input/2164')
 import collections
 
 def my(N:int):
+    #가장 밑의 값을 빼서 가장 위로 올리기, 가장 밑의 값을 빼기를 반복
     queue = collections.deque([i+1 for i in range(N)])
     while len(queue)>1:
         queue.popleft()
