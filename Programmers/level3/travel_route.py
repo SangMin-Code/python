@@ -37,8 +37,42 @@ def test(tickets:List[List[str]])->List[str]:
     DFS('ICN',graph)
     return val[0]
 
+def my2(tickets:List[List[str]])->List[str]:
+    answer = []
+    dic = collections.defaultdict(list)
+    for a,b in sorted(tickets):
+        dic[a].append(b)
+    route=['ICN']
+    def DFS(s,in_dic):
+        if len(route)==len(tickets)+1:
+            answer.append(route[:])
+        elif len(route)<len(tickets)+1:
+            for i in in_dic[s]:
+                next_dic = copy.deepcopy(in_dic)
+                route.append(i)
+                next_dic[s].remove(i)
+                DFS(i,next_dic)
+                route.pop()
+    DFS('ICN',dic)
+    return answer[0]
 
-
+def my3(tickets:List[List[str]])->List[str]:
+    answer = []
+    dic = collections.defaultdict(list)
+    for a, b in sorted(tickets):
+        dic[a].append(b)
+    route = ['ICN']
+    def DFS(s):
+        if len(route) == len(tickets)+ 1:
+            answer.append(route[:])
+        elif len(route) < len(tickets)+1:
+            for i in dic[s]:
+                route.append(i)
+                dic[s].remove(i)
+                DFS(i)
+                route.pop()
+    DFS('ICN')
+    return answer[0]
 
 TC = int(input())
 for test_case in range(1,TC+1):
@@ -48,5 +82,5 @@ for test_case in range(1,TC+1):
         s,e = i.split()
         tickets.append([s,e])
     #answer = my(tickets)
-    answer = test(tickets)
+    answer = my3(tickets)
     print(answer)
