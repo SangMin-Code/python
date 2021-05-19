@@ -33,6 +33,7 @@ def my(n:int,k:int)->int:
         b*=b
         b%=mod
         ex//=2
+
     return (a*result)%mod
 
 TC = int(input())
