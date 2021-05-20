@@ -33,10 +33,31 @@ def my(N:int,B:int,matrix:[List[List[int]]])->List[List[int]]:
 
     return divide(matrix,B)
 
+def my2(N:int,B:int,matrix:[List[List[int]]])->List[List[int]]:
+
+    def mul(a,b):
+        new_m = [[0]*N for _ in range(N)]
+        for i in range(N):
+            for j in range(N):
+                for k in range(N):
+                    new_m[i][j]+=a[i][k]*b[k][j]
+                new_m[i][j]%=1000
+        return new_m
+
+    result_m = [[1 if i==j else 0 for j in range(N)] for i in range(N)]
+
+    while B:
+        if B%2:
+            result_m = mul(result_m,matrix)
+        matrix = mul(matrix,matrix)
+        B//=2
+    return result_m
+
+
 TC = int(input())
 for test_case in range(1, TC + 1):
     N,B = map(int,sys.stdin.readline().rstrip().split())
     matrix = [list(map(int,sys.stdin.readline().rstrip().split())) for _ in range(N)]
-    answer = my(N,B,matrix)
+    answer = my2(N,B,matrix)
     for i in answer:
         print(' '.join([str(j) for j in i]))
