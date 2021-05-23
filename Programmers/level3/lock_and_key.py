@@ -46,10 +46,51 @@ def my(key:List[List[int]], lock:List[List[int]])->bool:
 
     return False
 
+def my2(key:List[List[int]], lock:List[List[int]])->bool:
+
+    M,N= len(key),len(lock)
+
+    def lotation(board):
+        n = len(board)
+        new_board = [[0]*n for i in range(n)]
+        for i in range(n):
+            for j in range(n):
+                new_board[i][j]=board[j][n-1-i]
+        return new_board
+
+    def check(key,lock):
+        len_ex = len(lock) + (len(key) - 1) * 2
+        expand_lock = [[0] * len_ex for _ in range(len_ex)]
+        for i in range(len(lock)):
+            for j in range(len(lock)):
+                expand_lock[len(key) - 1 + i][len(key) - 1 + j] = lock[i][j]
+
+        for i in range(len(key) + len(lock) - 1):
+            for j in range(len(key) + len(lock) - 1):
+                expand_key = [[0] * len_ex for _ in range(len_ex)]
+                flag = True
+                for k in range(len(key)):
+                    for l in range(len(key)):
+                        expand_key[i + k][j + l] = key[k][l]
+                for k in range(len(lock)):
+                    for l in range(len(lock)):
+                        if expand_key[len(key) - 1 + k][len(key) - 1 + l] + expand_lock[len(key) - 1 + k][
+                            len(key) - 1 + l] != 1:  # 비교
+                            flag = False
+                            break
+                if flag: return True
+        return False
+
+    for _ in range(4):
+        if check(key,lock):
+            return True
+        else :
+            key = lotation(key)
+    return False
 
 TC = int(input())
 for test_case in range(1, TC + 1):
     key = [list(map(int,i.split()))for i in list(input().split(','))]
     lock = [list(map(int, i.split())) for i in list(input().split(','))]
-    answer = my(key,lock)
+    answer = my2(key,lock)
     print(answer)
