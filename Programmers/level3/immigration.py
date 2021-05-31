@@ -25,6 +25,21 @@ def my(n:int, times:List)->int:
             left = mid + 1
     return answer
 
+def my2(n:int, times:List)->int:
+    answer =0
+    left= 1
+    right = max(times)*n
+    while left<=right:
+        mid = left+(right-left)//2
+        cnt = 0
+        for time in times:
+            cnt += mid//time
+        if cnt>=n:
+            answer = mid
+            right = mid-1
+        else :
+            left = mid+1
+    return answer
 
 TC = int(input())
 for test_case in range(1,TC+1):
