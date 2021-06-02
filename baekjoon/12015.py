@@ -6,35 +6,33 @@ sys.stdin = open('input/12015')
 
 
 def my(n:int, nums:List[int])->int:
-    nums.sort()
-    num = nums[0]
-
-    def search(num,start):
-        left = start
-        right = len(nums)-1
-        result = 0
+    D = [0]
+    def search(num):
+        left,right = 0, len(D)-1
+        s =0
+        if D[-1]<num:
+            return len(D)
         while left<=right:
-            mid = left+(right-left)//2
-            if nums[mid] <=num:
-                result = left
-                left =mid+1
-            else :
-                if nums[mid]>num:
-                    result = mid
-                right = mid-1
-        return result
+            mid = left + (right - left) // 2
+            if D[mid] >= num:
+                s = mid
+                right = mid - 1
+            else:
+                left = mid + 1
+        return s
 
-    cnt = 0
-    idx = 0
-    while idx<len(nums)-1:
-        idx = search(num,idx)
-        num = nums[idx]
-        cnt += 1
-    return cnt
+    for i in nums:
+        idx = search(i)
+        if idx==len(D):
+            D.append(i)
+        else:
+            if i<D[idx]:
+                D[idx]=i
+
+    return len(D)-1
 
 def my2(n:int,nums:List[int])->int:
     dp = []
-
     for i in nums:
         k = bisect.bisect_left(dp, i)  # 자신이 들어갈 위치 k
         if len(dp) <= k:  # i가 가장 큰 숫자라면
@@ -47,5 +45,5 @@ TC = int(input())
 for test_case in range(1, TC + 1):
     n = int(sys.stdin.readline().rstrip())
     nums = list(map(int,sys.stdin.readline().rstrip().split()))
-    answer = my2(n,nums)
+    answer = my(n,nums)
     print(answer)
