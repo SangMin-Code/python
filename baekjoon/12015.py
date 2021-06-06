@@ -7,6 +7,7 @@ sys.stdin = open('input/12015')
 
 def my(n:int, nums:List[int])->int:
     D = [0]
+
     def search(num):
         left,right = 0, len(D)-1
         s =0
