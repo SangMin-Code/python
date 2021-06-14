@@ -18,6 +18,19 @@ def my(n:int, schedule:List[List[int]])->int:
         dp[i+t[i]]=max(m+p[i],dp[i+t[i]])
     return max(dp)
 
+def my2(n:int, schedule:List[List[int]])->int:
+    t,p,dp,m=[],[],[0]*(n+1),0
+
+    for i,j in schedule:
+        t.append(i)
+        p.append(j)
+    for i in range(n):
+        m=max(m,dp[i])
+        if i+t[i]>n:
+            continue
+        dp[i+t[i]] = max(m+p[i],dp[i+t[i]])
+    return max(dp)
+
 TC = int(input())
 for test_case in range(1, TC + 1):
     n = int(input())
