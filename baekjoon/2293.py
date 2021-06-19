@@ -1,4 +1,5 @@
 # 2293.py
+import collections
 import sys
 from typing import List
 
@@ -26,5 +27,6 @@ for test_case in range(1, TC + 1):
 dp = [ 0 for i in range(k+1)]
 dp[0]=1
 
+'asdasd'.lstrip()
 
 
