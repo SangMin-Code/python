@@ -5,9 +5,19 @@ from typing import List
 sys.stdin = open('input/dividing_string')
 
 
-def my():
-    pass
-
+def my(S:str):
+    def cal(n):
+        return (n*(n+1))//2
+    intervals = S.split('a')
+    l =len(intervals)
+    if l%3!=1:
+        return 0
+    splitPoint = (l-1)//3
+    if not splitPoint :
+        return cal(len(intervals[0])-2)
+    else:
+        return (len(intervals[splitPoint]) + 1) *\
+        (len(intervals[2 * splitPoint]) + 1)
 
 TC = int(input())
 for test_case in range(1, TC + 1):
