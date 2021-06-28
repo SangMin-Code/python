@@ -33,11 +33,23 @@ def my2(m:int,n:int,puddles:List[List[int]])->int:
                     ways[r][c] +=ways[r-1][c]
     return ways[n][m] % 1000000007
 
+def my3(m:int,n:int,puddles:List[List[int]])->int:
+    dir = [[1,0],[0,1]]
 
+    def dfs(r,c):
+        cnt = 0
+        if c==m-1 and r==n-1:
+            return 1
+        for dr,dc in dir:
+            nr,nc = dr+r,dc+c
+            if 0<=nr<n and 0<=nc<m and [nr,nc] not in puddles:
+                cnt += dfs(nr,nc)
+        return cnt
+    return dfs(0,0)
 
 TC = int(input())
 for test_case in range(1,TC+1):
     m,n = map(int,input().split())
     puddles = [list(map(int,i.split(','))) for i in list(input().split())]
-    answer = my2(m,n,puddles)
+    answer = my3(m,n,puddles)
     print(answer)
