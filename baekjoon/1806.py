@@ -27,6 +27,25 @@ def my(N:int,S:int,nums:List[int])->int:
         return 0
     else:
         return min_length
+def my2(N:int,S:int,nums:List[int])->int:
+    l,r, sum, min_l = 0,0,0,float('inf')
+
+    while True:
+
+        if r==N:
+            break
+        elif sum>=S:
+            min_l = min(min_l,r-l)
+            sum -= nums[l]
+            l+=1
+        else:
+            sum+=nums[r]
+            r+=1
+
+    if min_l == int('float'):
+        return 0
+    else:
+        return min_l
 
 
 TC = int(input())
