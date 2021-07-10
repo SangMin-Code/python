@@ -1,12 +1,12 @@
 import sys
 
-N,M=map(int,sys.stdin.readline().split())#도시개수 버스 노선개수
+N,M=map(int,sys.stdin.readline().split())
 
 G=[]
 
 for _ in range(M):
 
-    G.append(list(map(int,sys.stdin.readline().split())))#출발 도착 거리
+    G.append(list(map(int,sys.stdin.readline().split())))
 
 
 
