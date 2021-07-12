@@ -32,8 +32,35 @@ def my(N:int)->int:
                 start+=1
     return answer
 
+def my2(N:int)->int:
+    #소수
+    primes = [True for _ in range(4000001)]
+    for i in range(2,int(4000001**0.5)+1):
+        if primes[i]:
+            for j in range(i+i,4000001,i):
+                primes[j]=False
+
+    prime_list = [i for i,j in enumerate(primes) if j and i >=2]
+
+    answer,left,right = 0, 0, 1
+
+    while left<len(prime_list) and prime_list[right-1]<=N:
+        prime_sum = sum(prime_list[left:right])
+        if prime_sum >= N:
+            left +=1
+            right = left+1
+            if prime_sum ==N:
+                answer+=1
+        else :
+            if right < len(prime_list):
+                right+=1
+            else:
+                left+=1
+                right = left+1
+    return answer
+
 TC = int(input())
 for test_case in range(1, TC + 1):
     N = int(input())
-    answer = my(N)
+    answer = my2(N)
     print(answer)
