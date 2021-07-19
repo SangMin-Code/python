@@ -14,10 +14,9 @@ def my(array:List[int],commands:List[List[int]])->List[int]:
     return answer
 
 
-
 TC = int(input())
 for test_case in range(1, TC + 1):
     array = list(map(int,input().split()))
-    commands = [list(int,i.split()) for i in list(input().split(','))]
+    commands = [list(map(int,i.split())) for i in list(input().split(','))]
     answer = my()
     print(answer)
