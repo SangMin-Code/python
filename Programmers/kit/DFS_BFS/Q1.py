@@ -16,6 +16,16 @@ def my(numbers:List[int],target:int)->int:
             return dfs(sum+numbers[k],k+1)+dfs(sum-numbers[k],k+1)
     return dfs(0,0)
 
+def my2(numbers:List[int],target:int)->int:
+    def dfs(sum,k):
+        if k==len(numbers):
+            if sum==target:
+                return 1
+        else:
+            return dfs(sum+numbers[k],k+1)+dfs(sum-numbers[k],k+1)
+    return dfs(0,0)
+
+
 
 TC = int(input())
 for test_case in range(1, TC + 1):
