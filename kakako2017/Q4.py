@@ -1,4 +1,4 @@
-#Q4.py
+#Q4.py.py
 import sys
 sys.stdin=open('input/Q4')
 from typing import List
