@@ -23,6 +23,7 @@ def my(chat:List[str])->List[str]:
     return answer
 
 
+
 TC = int(input())
 for test_case in range(1,TC+1):
     chat = []
