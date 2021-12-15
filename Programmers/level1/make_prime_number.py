@@ -2,7 +2,7 @@ import sys
 from typing import List
 from itertools import combinations
 
-sys.stdin = open('Programmers/level1/input/make_prime_number.text')
+sys.stdin = open('Programmers/level1/input/make_prime_number.txt')
 
 
 def solution(nums: List) -> int:

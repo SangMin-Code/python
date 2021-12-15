@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open('Programmers/level1/input/new_id.text')
+sys.stdin = open('Programmers/level1/input/new_id.txt')
 
 
 def solution(id: str):

@@ -1,7 +1,7 @@
 import sys
 from typing import List
 
-sys.stdin = open('Programmers/level1/input/number_and_word.text')
+sys.stdin = open('Programmers/level1/input/number_and_word.txt')
 
 
 def solution(s: str) -> str:

@@ -1,7 +1,7 @@
 import sys
 from typing import List
 
-sys.stdin = open('Programmers/level1/input/no_numbers.text')
+sys.stdin = open('Programmers/level1/input/no_numbers.txt')
 
 
 def solution(numbers: List[int]):

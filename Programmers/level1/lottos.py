@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open('Programmers/level1/input/lottos.text')
+sys.stdin = open('Programmers/level1/input/lottos.txt')
 
 
 def solution(lottos, win_nums):
